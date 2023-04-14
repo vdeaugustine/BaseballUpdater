@@ -13,49 +13,46 @@ import Vin
 
 struct ContentView: View {
     @State private var schedule: ScheduleForDate? = nil
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
 
     var body: some View {
         List {
-            Text("Watch MLB Game")
-                .font(.title)
-
-            Link("Watch Game",
-                 destination: URL(string: "https://www.mlb.com")!)
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-            
-            
-
             if let schedule,
                let dates = schedule.dates,
                let todayGame = dates.first,
                let games = todayGame.games {
                 ForEach(games) { game in
                     if let gameURL = game.broadcastURL,
-                       let description = game.gameDescription{
+                       let description = game.gameDescription {
                         Link(destination: gameURL) {
                             Text(description)
                         }
                     }
-                        
                 }
             }
         }
         .onAppear {
-            let url = URL(string: Links.getScheduleURL())!
-            
-            fetchJSON(url: url) { retSched in
-                
-                DispatchQueue.main.async {
-                    schedule = retSched
-                    print(String(describing: schedule))
-                }
-                
-                
+            guard let url = URL(string: Links.getScheduleURL(for: .dateByAddingDays(-1))) else {
+                return
             }
-            
+
+            fetchJSON(url: url) { (result: Result<ScheduleForDate, Error>) in
+                DispatchQueue.main.async {
+                    switch result {
+                        case let .success(success):
+                            schedule = success
+                        case let .failure(failure):
+                            showAlert = true
+                            alertMessage = "Failed to fetch schedule: \(failure.localizedDescription)"
+                    }
+                }
+            }
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Error"),
+                  message: Text(alertMessage),
+                  dismissButton: .default(Text("OK")))
         }
     }
 }

@@ -14,8 +14,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -110,8 +110,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -158,8 +158,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -221,8 +221,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -445,8 +445,8 @@
             filePath = "BaseballPlayerUpdater/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -541,8 +541,8 @@
             filePath = "BaseballPlayerUpdater/Links.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "fetchJSON(url:completion:)"
             landmarkType = "9">
             <Locations>
@@ -575,6 +575,51 @@
                   startingLineNumber = "42"
                   endingLineNumber = "42"
                   offsetFromSymbolStart = "1460">
+               </Location>
+               <Location
+                  uuid = "BBAFEFD9-55A5-4FCC-BE0E-3BC31EC9D3AB - 81d75cc8c4ecf28c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BaseballPlayerUpdater.fetchJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BaseballPlayerUpdater"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vincentdeaugustine/Documents/BaseballPlayerUpdater/BaseballUpdater/BaseballPlayerUpdater/Links.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "1456">
+               </Location>
+               <Location
+                  uuid = "BBAFEFD9-55A5-4FCC-BE0E-3BC31EC9D3AB - 81d75cc8c4ecf472"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BaseballPlayerUpdater.fetchJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BaseballPlayerUpdater"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vincentdeaugustine/Documents/BaseballPlayerUpdater/BaseballUpdater/BaseballPlayerUpdater/Links.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1372">
+               </Location>
+               <Location
+                  uuid = "BBAFEFD9-55A5-4FCC-BE0E-3BC31EC9D3AB - 81d75cc8c4ecf472"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BaseballPlayerUpdater.fetchJSON&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BaseballPlayerUpdater"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vincentdeaugustine/Documents/BaseballPlayerUpdater/BaseballUpdater/BaseballPlayerUpdater/Links.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1456">
                </Location>
             </Locations>
          </BreakpointContent>
