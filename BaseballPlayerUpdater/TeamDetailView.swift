@@ -24,6 +24,12 @@ struct TeamDetailView: View {
                     Text("Season: \(season.str)")
                 }
                 
+                NavigationLink {
+                    
+                } label: {
+                    Text("Roster")
+                }
+                
             }
             
             Section(header: Text("Leagues and Divisions")) {

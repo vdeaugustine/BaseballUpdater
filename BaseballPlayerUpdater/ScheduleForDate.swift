@@ -111,12 +111,12 @@ enum BroadcastType: String, Codable {
 
 // MARK: - VideoResolution
 struct VideoResolution: Codable {
-    let code: Code?
+    let code: PlayerCode?
     let resolutionShort: ResolutionShort?
     let resolutionFull: ResolutionFull?
 }
 
-enum Code: String, Codable {
+enum PlayerCode: String, Codable {
     case h = "H"
 }
 

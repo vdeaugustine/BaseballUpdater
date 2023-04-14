@@ -16,7 +16,12 @@ struct ListOfTeams: View {
             if let teams = teamsObject?.teams {
                 ForEach(teams.sorted(by: {$0.id! < $1.id!})) { team in
                     if let name = team.clubName {
-                        Text(name)
+                        NavigationLink {
+                            TeamDetailView(team: team)
+                        } label: {
+                            Text(name)
+                        }
+
                     }
                 }
             }
@@ -35,9 +40,7 @@ struct ListOfTeams: View {
                 }
             }
         }
-        .navigationDestination(for: Team.self) { team in
-            
-        }
+        
     }
 }
 
@@ -45,6 +48,8 @@ struct ListOfTeams: View {
 
 struct ListOfTeams_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfTeams()
+        NavigationView {
+            ListOfTeams()
+        }
     }
 }

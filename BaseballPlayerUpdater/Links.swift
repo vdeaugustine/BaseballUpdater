@@ -33,6 +33,10 @@ enum Links {
     
     static let mlbTeams: String = "https://statsapi.mlb.com/api/v1/teams?sportId=1&leagueIds=103,104"
     
+    static func teamRoster(_ id: Int) -> String {
+        "https://statsapi.mlb.com/api/v1/teams/\(id)/roster?hydrate=person"
+    }
+    
 }
 
 func fetchJSON<T: Codable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {

@@ -25,6 +25,8 @@
 		9C9C83B729E91E21002110F6 /* MLBTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83B629E91E21002110F6 /* MLBTeam.swift */; };
 		9C9C83B929E91EE0002110F6 /* ListOfTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */; };
 		9C9C83BB29E921B5002110F6 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */; };
+		9C9C83BD29E9259D002110F6 /* TeamRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83BC29E9259D002110F6 /* TeamRoster.swift */; };
+		9C9C83BF29E92682002110F6 /* TeamRosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83BE29E92682002110F6 /* TeamRosterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		9C9C83B629E91E21002110F6 /* MLBTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBTeam.swift; sourceTree = "<group>"; };
 		9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfTeams.swift; sourceTree = "<group>"; };
 		9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
+		9C9C83BC29E9259D002110F6 /* TeamRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRoster.swift; sourceTree = "<group>"; };
+		9C9C83BE29E92682002110F6 /* TeamRosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRosterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 		9C9C836B29E8B384002110F6 = {
 			isa = PBXGroup;
 			children = (
+				9C9C83BE29E92682002110F6 /* TeamRosterView.swift */,
 				9C9C837629E8B384002110F6 /* BaseballPlayerUpdater */,
 				9C9C838C29E8B386002110F6 /* BaseballPlayerUpdaterTests */,
 				9C9C839629E8B386002110F6 /* BaseballPlayerUpdaterUITests */,
@@ -119,6 +124,7 @@
 				9C9C837729E8B384002110F6 /* BaseballPlayerUpdaterApp.swift */,
 				9C9C837929E8B384002110F6 /* ContentView.swift */,
 				9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */,
+				9C9C83BC29E9259D002110F6 /* TeamRoster.swift */,
 				9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */,
 				9C9C83B429E91B1B002110F6 /* SettingsView.swift */,
 				9C9C83A829E8FA5D002110F6 /* Links.swift */,
@@ -307,8 +313,10 @@
 				9C9C838129E8B385002110F6 /* Persistence.swift in Sources */,
 				9C9C83B529E91B1B002110F6 /* SettingsView.swift in Sources */,
 				9C9C83A929E8FA5D002110F6 /* Links.swift in Sources */,
+				9C9C83BF29E92682002110F6 /* TeamRosterView.swift in Sources */,
 				9C9C83B029E8FF17002110F6 /* ScheduleForDate.swift in Sources */,
 				9C9C83B729E91E21002110F6 /* MLBTeam.swift in Sources */,
+				9C9C83BD29E9259D002110F6 /* TeamRoster.swift in Sources */,
 				9C9C83BB29E921B5002110F6 /* TeamDetailView.swift in Sources */,
 				9C9C837A29E8B384002110F6 /* ContentView.swift in Sources */,
 				9C9C838429E8B385002110F6 /* BaseballPlayerUpdater.xcdatamodeld in Sources */,
