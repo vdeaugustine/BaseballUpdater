@@ -30,6 +30,9 @@ enum Links {
     static func getOnDeck(for gameId: Int) -> String {
         "https://statsapi.mlb.com/api/v1.1/game/\(gameId)/feed/live?fields=liveData,linescore,offense,onDeck,id,fullName,link"
     }
+    
+    static let mlbTeams: String = "https://statsapi.mlb.com/api/v1/teams?sportId=1&leagueIds=103,104"
+    
 }
 
 func fetchJSON<T: Codable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {

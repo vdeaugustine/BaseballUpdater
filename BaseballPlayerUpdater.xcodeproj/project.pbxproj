@@ -21,6 +21,10 @@
 		9C9C83AE29E8FC57002110F6 /* ScheduleJSONStructure.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C83AD29E8FC57002110F6 /* ScheduleJSONStructure.json */; };
 		9C9C83B029E8FF17002110F6 /* ScheduleForDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83AF29E8FF17002110F6 /* ScheduleForDate.swift */; };
 		9C9C83B329E90776002110F6 /* Vin in Frameworks */ = {isa = PBXBuildFile; productRef = 9C9C83B229E90776002110F6 /* Vin */; };
+		9C9C83B529E91B1B002110F6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83B429E91B1B002110F6 /* SettingsView.swift */; };
+		9C9C83B729E91E21002110F6 /* MLBTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83B629E91E21002110F6 /* MLBTeam.swift */; };
+		9C9C83B929E91EE0002110F6 /* ListOfTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */; };
+		9C9C83BB29E921B5002110F6 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		9C9C83A829E8FA5D002110F6 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		9C9C83AD29E8FC57002110F6 /* ScheduleJSONStructure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ScheduleJSONStructure.json; sourceTree = "<group>"; };
 		9C9C83AF29E8FF17002110F6 /* ScheduleForDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleForDate.swift; sourceTree = "<group>"; };
+		9C9C83B429E91B1B002110F6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9C9C83B629E91E21002110F6 /* MLBTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBTeam.swift; sourceTree = "<group>"; };
+		9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfTeams.swift; sourceTree = "<group>"; };
+		9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,9 @@
 			children = (
 				9C9C837729E8B384002110F6 /* BaseballPlayerUpdaterApp.swift */,
 				9C9C837929E8B384002110F6 /* ContentView.swift */,
+				9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */,
+				9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */,
+				9C9C83B429E91B1B002110F6 /* SettingsView.swift */,
 				9C9C83A829E8FA5D002110F6 /* Links.swift */,
 				9C9C837B29E8B385002110F6 /* Assets.xcassets */,
 				9C9C838029E8B385002110F6 /* Persistence.swift */,
@@ -117,6 +128,7 @@
 				9C9C837D29E8B385002110F6 /* Preview Content */,
 				9C9C83A629E8BB7A002110F6 /* Schedule.swift */,
 				9C9C83AF29E8FF17002110F6 /* ScheduleForDate.swift */,
+				9C9C83B629E91E21002110F6 /* MLBTeam.swift */,
 				9C9C83AC29E8FC26002110F6 /* JSON Structures */,
 			);
 			path = BaseballPlayerUpdater;
@@ -293,12 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C9C838129E8B385002110F6 /* Persistence.swift in Sources */,
+				9C9C83B529E91B1B002110F6 /* SettingsView.swift in Sources */,
 				9C9C83A929E8FA5D002110F6 /* Links.swift in Sources */,
 				9C9C83B029E8FF17002110F6 /* ScheduleForDate.swift in Sources */,
+				9C9C83B729E91E21002110F6 /* MLBTeam.swift in Sources */,
+				9C9C83BB29E921B5002110F6 /* TeamDetailView.swift in Sources */,
 				9C9C837A29E8B384002110F6 /* ContentView.swift in Sources */,
 				9C9C838429E8B385002110F6 /* BaseballPlayerUpdater.xcdatamodeld in Sources */,
 				9C9C83A729E8BB7A002110F6 /* Schedule.swift in Sources */,
 				9C9C837829E8B384002110F6 /* BaseballPlayerUpdaterApp.swift in Sources */,
+				9C9C83B929E91EE0002110F6 /* ListOfTeams.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

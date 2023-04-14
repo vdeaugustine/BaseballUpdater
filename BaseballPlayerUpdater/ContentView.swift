@@ -17,42 +17,45 @@ struct ContentView: View {
     @State private var alertMessage: String = ""
 
     var body: some View {
-        List {
-            if let schedule,
-               let dates = schedule.dates,
-               let todayGame = dates.first,
-               let games = todayGame.games {
-                ForEach(games) { game in
-                    if let gameURL = game.broadcastURL,
-                       let description = game.gameDescription {
-                        Link(destination: gameURL) {
-                            Text(description)
+        NavigationStack {
+            List {
+                if let schedule,
+                   let dates = schedule.dates,
+                   let todayGame = dates.first,
+                   let games = todayGame.games {
+                    ForEach(games) { game in
+                        if let gameURL = game.broadcastURL,
+                           let description = game.gameDescription,
+                           let onDeck = game.linescore?.offense?.onDeck {
+                            Link(destination: gameURL) {
+                                Text(onDeck.fullName ?? "NA")
+                            }
                         }
                     }
                 }
             }
-        }
-        .onAppear {
-            guard let url = URL(string: Links.getScheduleURL(for: .dateByAddingDays(-1))) else {
-                return
-            }
+            .onAppear {
+                guard let url = URL(string: Links.getScheduleURL(for: .dateByAddingDays(-1))) else {
+                    return
+                }
 
-            fetchJSON(url: url) { (result: Result<ScheduleForDate, Error>) in
-                DispatchQueue.main.async {
-                    switch result {
-                        case let .success(success):
-                            schedule = success
-                        case let .failure(failure):
-                            showAlert = true
-                            alertMessage = "Failed to fetch schedule: \(failure.localizedDescription)"
+                fetchJSON(url: url) { (result: Result<ScheduleForDate, Error>) in
+                    DispatchQueue.main.async {
+                        switch result {
+                            case let .success(success):
+                                schedule = success
+                            case let .failure(failure):
+                                showAlert = true
+                                alertMessage = "Failed to fetch schedule: \(failure.localizedDescription)"
+                        }
                     }
                 }
             }
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Error"),
-                  message: Text(alertMessage),
-                  dismissButton: .default(Text("OK")))
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Error"),
+                      message: Text(alertMessage),
+                      dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
