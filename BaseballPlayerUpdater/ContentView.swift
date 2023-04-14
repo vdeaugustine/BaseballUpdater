@@ -29,24 +29,28 @@ struct ContentView: View {
             
 
             if let schedule,
-               let games = schedule.dates,
-               let todayGame = games.first,
+               let dates = schedule.dates,
+               let todayGame = dates.first,
                let games = todayGame.games {
                 ForEach(games) { game in
-                    Link(destination: <#T##URL#>) { 
-                        <#code#>
+                    if let gameURL = game.broadcastURL,
+                       let description = game.gameDescription{
+                        Link(destination: gameURL) {
+                            Text(description)
+                        }
                     }
                         
                 }
             }
         }
         .onAppear {
-            let url = URL(string: "https://statsapi.mlb.com/api/v1/schedule?date=2023-04-12&sportId=1")!
+            let url = URL(string: Links.getScheduleURL())!
             
             fetchJSON(url: url) { retSched in
                 
                 DispatchQueue.main.async {
                     schedule = retSched
+                    print(String(describing: schedule))
                 }
                 
                 

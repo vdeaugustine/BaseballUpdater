@@ -30,9 +30,13 @@ struct Game: Codable, Identifiable {
     let gameDate: String?
     let officialDate: String?
     let status: Status?
-    let teams: Teams?
+    let teams: GameTeams?
+    let linescore: Linescore?
+    let decisions: Decisions?
     let venue: Venue?
+    let broadcasts: [Broadcast]?
     let content: Content?
+    let seriesStatus: SeriesStatus?
     let isTie: Bool?
     let gameNumber: Int?
     let publicFacing: Bool?
@@ -44,27 +48,287 @@ struct Game: Codable, Identifiable {
     let scheduledInnings: Int?
     let reverseHomeAwayStatus: Bool?
     let inningBreakLength, gamesInSeries, seriesGameNumber: Int?
-    let seriesDescription: SeriesDescription?
+    let seriesDescription: Description?
     let recordSource: RecordSource?
     let ifNecessary: DoubleHeader?
     let ifNecessaryDescription: IfNecessaryDescription?
     
-    
-    var urlForBroadcast: URL? {
-        URL(string: "https://www.mlb.com/tv/g\(gamePk)/v\()?affiliateId=MINISB#game_state=live")
+    var broadcastURL: URL? {
+        guard let content = content,
+              let firstEpgItem = content.media?.epg?.first?.items?.first,
+              let contentID = firstEpgItem.contentID
+        else { return nil }
+        
+        return URL(string:"https://www.mlb.com/tv/g\(gamePk)/v\(contentID)?affiliateId=MINISB#game_state=live")
+        
+//    https://www.mlb.com/tv/g{{thisGameID}}/v{{gameContentID}}?affiliateId=MINISB#game_state=live
     }
     
+    var gameDescription: String? {
+        guard let teams,
+              let homeName = teams.home?.team?.name,
+              let awayName = teams.away?.team?.name
+        else {
+            return nil
+        }
+        
+        return "\(awayName) at \(homeName)"
+        
+        
+        
+    }
     
+}
+
+// MARK: - Broadcast
+struct Broadcast: Codable {
+    let id: Int?
+    let name: String?
+    let type: BroadcastType?
+    let language: BroadcastLanguage?
+    let homeAway: HomeAway?
+    let callSign: String?
+    let isNational: Bool?
+    let videoResolution: VideoResolution?
+}
+
+enum HomeAway: String, Codable {
+    case away = "away"
+    case home = "home"
+}
+
+enum BroadcastLanguage: String, Codable {
+    case en = "en"
+    case es = "es"
+    case fr = "fr"
+}
+
+enum BroadcastType: String, Codable {
+    case am = "AM"
+    case fm = "FM"
+    case tv = "TV"
+}
+
+// MARK: - VideoResolution
+struct VideoResolution: Codable {
+    let code: Code?
+    let resolutionShort: ResolutionShort?
+    let resolutionFull: ResolutionFull?
+}
+
+enum Code: String, Codable {
+    case h = "H"
+}
+
+enum ResolutionFull: String, Codable {
+    case highDefinition = "High Definition"
+}
+
+enum ResolutionShort: String, Codable {
+    case hd = "HD"
 }
 
 // MARK: - Content
 struct Content: Codable {
     let link: String?
+    let editorial: Editorial?
+    let media: Media?
+    let highlights, summary, gameNotes: Editorial?
+}
+
+// MARK: - Editorial
+struct Editorial: Codable {
+}
+
+// MARK: - Media
+struct Media: Codable {
+    let epg: [Epg]?
+    let epgAlternate: [EpgAlternate]?
+    let freeGame, enhancedGame: Bool?
+}
+
+// MARK: - Epg
+struct Epg: Codable {
+    let title: EpgTitle?
+    let items: [EpgItem]?
+}
+
+// MARK: - EpgItem
+struct EpgItem: Codable {
+    let callLetters: String?
+    let espnAuthRequired, tbsAuthRequired, espn2AuthRequired: Bool?
+    let gameDate, contentID: String?
+    let fs1AuthRequired: Bool?
+    let mediaID: String?
+    let mediaFeedType: MediaFeedTypeEnum?
+    let mlbnAuthRequired, foxAuthRequired: Bool?
+    let mediaFeedSubType: String?
+    let freeGame: Bool?
+    let id: Int?
+    let abcAuthRequired: Bool?
+    
+    let description: String?
+    let language: ItemLanguage?
+    let type: MediaFeedTypeEnum?
+
+    enum CodingKeys: String, CodingKey {
+        case callLetters, espnAuthRequired, tbsAuthRequired, espn2AuthRequired, gameDate
+        case contentID = "contentId"
+        case fs1AuthRequired
+        case mediaID = "mediaId"
+        case mediaFeedType, mlbnAuthRequired, foxAuthRequired, mediaFeedSubType, freeGame, id, abcAuthRequired, description, language, type
+    }
+}
+
+enum ItemLanguage: String, Codable {
+    case en = "EN"
+    case es = "es"
+    case languageES = "ES"
+    case languageEn = "en"
+}
+
+enum MediaFeedTypeEnum: String, Codable {
+    case away = "AWAY"
+    case empty = ""
+    case home = "HOME"
+}
+
+enum MediaState: String, Codable {
+    case mediaArchive = "MEDIA_ARCHIVE"
+}
+
+enum RenditionName: String, Codable {
+    case english = "English"
+    case englishRadio = "English Radio"
+    case radioEspañola = "Radio Española"
+}
+
+enum EpgTitle: String, Codable {
+    case audio = "Audio"
+    case mlbtv = "MLBTV"
+    case mlbtvAudio = "MLBTV-Audio"
+}
+
+// MARK: - EpgAlternate
+struct EpgAlternate: Codable {
+    let items: [EpgAlternateItem]?
+    let title: EpgAlternateTitle?
+}
+
+// MARK: - EpgAlternateItem
+struct EpgAlternateItem: Codable {
+    let type: PurpleType?
+    let state: GameState?
+    let date, id, headline, seoTitle: String?
+    let slug, blurb: String?
+    let keywordsAll, keywordsDisplay: [Keywords]?
+    let image: Image?
+    let noIndex: Bool?
+    let mediaPlaybackID, title, description, duration: String?
+    let mediaPlaybackURL: String?
+    let playbacks: [Playback]?
+
+    enum CodingKeys: String, CodingKey {
+        case type, state, date, id, headline, seoTitle, slug, blurb, keywordsAll, keywordsDisplay, image, noIndex
+        case mediaPlaybackID = "mediaPlaybackId"
+        case title, description, duration
+        case mediaPlaybackURL = "mediaPlaybackUrl"
+        case playbacks
+    }
+}
+
+// MARK: - Image
+struct Image: Codable {
+    let title: String?
+    let altText: JSONNull?
+    let templateURL: String?
+    let cuts: [Cut]?
+
+    enum CodingKeys: String, CodingKey {
+        case title, altText
+        case templateURL = "templateUrl"
+        case cuts
+    }
+}
+
+// MARK: - Cut
+struct Cut: Codable {
+    let aspectRatio: AspectRatio?
+    let width, height: Int?
+    let src, at2X, at3X: String?
+
+    enum CodingKeys: String, CodingKey {
+        case aspectRatio, width, height, src
+        case at2X = "at2x"
+        case at3X = "at3x"
+    }
+}
+
+enum AspectRatio: String, Codable {
+    case the169 = "16:9"
+    case the43 = "4:3"
+    case the6427 = "64:27"
+}
+
+// MARK: - Keywords
+struct Keywords: Codable {
+    let type: KeywordsAllType?
+    let value, displayName: String?
+}
+
+enum KeywordsAllType: String, Codable {
+    case game = "game"
+    case gamePk = "game_pk"
+    case mlbtax = "mlbtax"
+    case subject = "subject"
+    case taxonomy = "taxonomy"
+    case team = "team"
+    case teamID = "team_id"
+}
+
+// MARK: - Playback
+struct Playback: Codable {
+    let name: Name?
+    let url: String?
+    let width, height: String?
+}
+
+enum Name: String, Codable {
+    case highBit = "highBit"
+    case hlsCloud = "hlsCloud"
+    case httpCloudWired = "HTTP_CLOUD_WIRED"
+    case httpCloudWired60 = "HTTP_CLOUD_WIRED_60"
+    case mp4AVC = "mp4Avc"
+    case trickplay = "trickplay"
+}
+
+enum GameState: String, Codable {
+    case a = "A"
+}
+
+enum PurpleType: String, Codable {
+    case video = "video"
+}
+
+enum EpgAlternateTitle: String, Codable {
+    case dailyRecap = "Daily Recap"
+    case extendedHighlights = "Extended Highlights"
 }
 
 enum DayNight: String, Codable {
     case day = "day"
     case night = "night"
+}
+
+// MARK: - Decisions
+struct Decisions: Codable {
+    let winner, loser, save: Loser?
+}
+
+// MARK: - Loser
+struct Loser: Codable {
+    let id: Int?
+    let fullName, link: String?
 }
 
 enum DoubleHeader: String, Codable {
@@ -83,19 +347,130 @@ enum IfNecessaryDescription: String, Codable {
     case normalGame = "Normal Game"
 }
 
+// MARK: - Linescore
+struct Linescore: Codable {
+    let currentInning: Int?
+    let currentInningOrdinal: CurrentInningOrdinal?
+    let inningState, inningHalf: InningHalfEnum?
+    let isTopInning: Bool?
+    let scheduledInnings: Int?
+    let innings: [Inning]?
+    let teams: LinescoreTeams?
+    let defense: Defense?
+    let offense: Offense?
+    let balls, strikes, outs: Int?
+    let note: String?
+}
+
+enum CurrentInningOrdinal: String, Codable {
+    case the10Th = "10th"
+    case the1St = "1st"
+    case the2Nd = "2nd"
+    case the3RD = "3rd"
+    case the4Th = "4th"
+    case the5Th = "5th"
+    case the6Th = "6th"
+    case the7Th = "7th"
+    case the8Th = "8th"
+    case the9Th = "9th"
+}
+
+// MARK: - Defense
+struct Defense: Codable {
+    let pitcher, catcher, first, second: Loser?
+    let third, shortstop, defenseLeft, center: Loser?
+    let defenseRight, batter, onDeck, inHole: Loser?
+    let battingOrder: Int?
+    let team: Venue?
+
+    enum CodingKeys: String, CodingKey {
+        case pitcher, catcher, first, second, third, shortstop
+        case defenseLeft = "left"
+        case center
+        case defenseRight = "right"
+        case batter, onDeck, inHole, battingOrder, team
+    }
+}
+
+// MARK: - Venue
+struct Venue: Codable {
+    let id: Int?
+    let name, link: String?
+    let abbreviation: Abbreviation?
+}
+
+enum Abbreviation: String, Codable {
+    case cl = "CL"
+    case gl = "GL"
+}
+
+enum InningHalfEnum: String, Codable {
+    case bottom = "Bottom"
+    case top = "Top"
+}
+
+// MARK: - Inning
+struct Inning: Codable {
+    let num: Int?
+    let ordinalNum: CurrentInningOrdinal?
+    let home, away: InningAway?
+}
+
+// MARK: - InningAway
+struct InningAway: Codable {
+    let runs, hits, errors, leftOnBase: Int?
+}
+
+// MARK: - Offense
+struct Offense: Codable {
+    let batter, onDeck, inHole, pitcher: Loser?
+    let battingOrder: Int?
+    let team: Venue?
+    let first: Loser?
+}
+
+// MARK: - LinescoreTeams
+struct LinescoreTeams: Codable {
+    let home, away: InningAway?
+}
+
 enum RecordSource: String, Codable {
     case s = "S"
 }
 
-enum SeriesDescription: String, Codable {
+enum Description: String, Codable {
     case regularSeason = "Regular Season"
+}
+
+// MARK: - SeriesStatus
+struct SeriesStatus: Codable {
+    let gameNumber, totalGames: Int?
+    let isTied, isOver: Bool?
+    let wins, losses: Int?
+    let winningTeam, losingTeam: IngTeam?
+    let description: Description?
+    let shortDescription: Short?
+    let result: String?
+    let shortName: Short?
+}
+
+// MARK: - IngTeam
+struct IngTeam: Codable {
+    let springLeague: Venue?
+    let allStarStatus: DoubleHeader?
+    let id: Int?
+    let name, link: String?
+}
+
+enum Short: String, Codable {
+    case season = "Season"
 }
 
 // MARK: - Status
 struct Status: Codable {
-    let abstractGameState: GameState?
+    let abstractGameState: AbstractGameStateEnum?
     let codedGameState: AbstractGameCode?
-    let detailedState: GameState?
+    let detailedState: AbstractGameStateEnum?
     let statusCode: AbstractGameCode?
     let startTimeTBD: Bool?
     let abstractGameCode: AbstractGameCode?
@@ -105,21 +480,23 @@ enum AbstractGameCode: String, Codable {
     case f = "F"
 }
 
-enum GameState: String, Codable {
+enum AbstractGameStateEnum: String, Codable {
     case stateFinal = "Final"
 }
 
-// MARK: - Teams
-struct Teams: Codable {
-    let away, home: Away?
+// MARK: - GameTeams
+struct GameTeams: Codable {
+    let away, home: PurpleAway?
 }
 
-// MARK: - Away
-struct Away: Codable {
+// MARK: - PurpleAway
+struct PurpleAway: Codable {
     let leagueRecord: LeagueRecord?
     let score: Int?
     let team: Venue?
-    let isWinner, splitSquad: Bool?
+    let isWinner: Bool?
+    let probablePitcher: Loser?
+    let splitSquad: Bool?
     let seriesNumber: Int?
 }
 
@@ -127,12 +504,6 @@ struct Away: Codable {
 struct LeagueRecord: Codable {
     let wins, losses: Int?
     let pct: String?
-}
-
-// MARK: - Venue
-struct Venue: Codable {
-    let id: Int?
-    let name, link: String?
 }
 
 // MARK: - Encode/decode helpers
