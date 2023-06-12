@@ -222,7 +222,7 @@ struct EpgAlternateItem: Codable {
     let date, id, headline, seoTitle: String?
     let slug, blurb: String?
     let keywordsAll, keywordsDisplay: [Keywords]?
-    let image: Image?
+    let image: ScheduleImage?
     let noIndex: Bool?
     let mediaPlaybackID, title, description, duration: String?
     let mediaPlaybackURL: String?
@@ -238,7 +238,7 @@ struct EpgAlternateItem: Codable {
 }
 
 // MARK: - Image
-struct Image: Codable {
+struct ScheduleImage: Codable {
     let title: String?
     let altText: JSONNull?
     let templateURL: String?

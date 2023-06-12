@@ -11,6 +11,8 @@ import SwiftUI
 
 struct ListOfTeams: View {
     @State private var teamsObject: MLBTeams? = nil
+    
+    /// The body of the view.
     var body: some View {
         List {
             if let teams = teamsObject?.teams {
@@ -43,6 +45,8 @@ struct ListOfTeams: View {
         
     }
 }
+
+
 
 // MARK: - ListOfTeams_Previews
 

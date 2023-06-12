@@ -25,7 +25,7 @@ struct TeamDetailView: View {
                 }
                 
                 NavigationLink {
-                    
+                    TeamRosterView(teamCode: team.id!)
                 } label: {
                     Text("Roster")
                 }

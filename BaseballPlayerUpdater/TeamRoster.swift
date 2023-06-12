@@ -103,4 +103,7 @@ enum PositionName: String, Codable {
     case shortstop = "Shortstop"
     case thirdBase = "Third Base"
     case twoWayPlayer = "Two-Way Player"
+    case designatedHitter = "Designated Hitter"
+    case firstBase = "First Base"
+    case outfield = "Outfield"
 }
