@@ -15,31 +15,25 @@ struct ContentView: View {
     @State private var schedule: ScheduleForDate? = nil
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    
+    @State private var tabSelection = Tabs.teams
+
     enum Tabs: String, CustomStringConvertible, Hashable {
         var description: String { rawValue }
-        
         case plays
         case teams
     }
-    
-    
-    
+
     var body: some View {
-        TabView {
-            
+        TabView(selection: $tabSelection) {
             NavigationStack {
                 AllPlaysInBaseball()
             }
             .makeTab(tab: Tabs.plays, systemImage: "figure.baseball")
-            
-            
+
             NavigationStack {
                 ListOfTeams()
             }
             .makeTab(tab: Tabs.teams, systemImage: "list.bullet")
-            
-            
         }
     }
 }

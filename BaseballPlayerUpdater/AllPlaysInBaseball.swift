@@ -12,31 +12,61 @@ import Vin
 
 struct AllPlaysInBaseball: View {
     @State private var allPlays = [Play]()
+    @State private var showTweetConfirmation = false
+    @State private var showSpinner = false
 
     var body: some View {
-        List {
-            
-            if allPlays.isEmpty {
-                ProgressView()
-            }
-            
+        ZStack {
+            List {
+                if allPlays.isEmpty, !showSpinner {
+                    Text("Pull down to load")
+                }
 
-            ForEach(allPlays) { play in
+                ForEach(allPlays) { play in
 
-                HStack {
-                    if let url = URL(string: Links.playerImage(id: play.matchup.batter.id)) {
-                        PlayerImage(url: url)
-                            .frame(height: 60)
-                    }
+                    HStack {
+                        if let url = URL(string: Links.playerImage(id: play.matchup.batter.id)) {
+                            PlayerImage(url: url)
+                                .frame(height: 60)
+                        }
 
-                    VStack(alignment: .leading) {
-                        Text(play.result.description)
-                        Text(play.playTime)
+                        VStack(alignment: .leading) {
+                            Text(play.result.description)
+                            Text(play.playTime)
+                        }
                     }
                 }
             }
+            .refreshable {
+                showSpinner = true
+                await fetchAction()
+//                showSpinner = false
+            }
+//            .toolbar {
+//                ToolbarItem {
+//                    Button {
+//                        Task {
+//                            await fetchAction()
+//                        }
+//                    } label: {
+//                        Label("Refresh", systemImage: "arrow.triangle.2.circlepath")
+//                    }
+//                }
+//            }
+            
+            if showSpinner {
+                ProgressView()
+            }
         }
-        .task {
+
+//        .task {
+//            fetchAction()
+//        }
+    }
+
+    func fetchAction() async {
+        Task {
+            
             let packs = try! await getGamePacks()
             var pbps: [PlayByPlay] = []
             for pack in packs {
@@ -44,13 +74,14 @@ struct AllPlaysInBaseball: View {
                     pbps.append(pbp)
                 }
             }
-            var plays: [Play] = pbps.compactMap { $0.allPlays }.flatMap { $0 }
+            let plays: [Play] = pbps.compactMap { $0.allPlays }.flatMap { $0 }
 
-            var sortedPlays: [Play] = plays.sorted { firstPlay, secondPlay in
+            let sortedPlays: [Play] = plays.sorted { firstPlay, secondPlay in
                 convertToDate(dateString: firstPlay.playEndTime) ?? .distantFuture < convertToDate(dateString: secondPlay.playEndTime) ?? .distantFuture
             }
 
             allPlays = sortedPlays
+            showSpinner = false
 
             func convertToDate(dateString: String) -> Date? {
                 let dateFormatter = ISO8601DateFormatter()

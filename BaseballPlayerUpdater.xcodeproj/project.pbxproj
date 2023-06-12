@@ -126,25 +126,25 @@
 		9C9C837629E8B384002110F6 /* BaseballPlayerUpdater */ = {
 			isa = PBXGroup;
 			children = (
-				9C9C83BE29E92682002110F6 /* TeamRosterView.swift */,
+				9CF159612A36D43E00AC5B76 /* AllPlaysInBaseball.swift */,
 				9C9C837729E8B384002110F6 /* BaseballPlayerUpdaterApp.swift */,
 				9C9C837929E8B384002110F6 /* ContentView.swift */,
-				9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */,
-				9C9C83BC29E9259D002110F6 /* TeamRoster.swift */,
-				9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */,
-				9C9C83B429E91B1B002110F6 /* SettingsView.swift */,
 				9C9C83A829E8FA5D002110F6 /* Links.swift */,
-				9CF159612A36D43E00AC5B76 /* AllPlaysInBaseball.swift */,
-				9C9C83C029E93640002110F6 /* PlayerImage.swift */,
-				9C9C837B29E8B385002110F6 /* Assets.xcassets */,
+				9C9C83B829E91EE0002110F6 /* ListOfTeams.swift */,
+				9C2015CA2A3698ED00094E5D /* MLBManager.swift */,
+				9C9C83B629E91E21002110F6 /* MLBTeam.swift */,
 				9C9C838029E8B385002110F6 /* Persistence.swift */,
-				9C9C838229E8B385002110F6 /* BaseballPlayerUpdater.xcdatamodeld */,
-				9C9C837D29E8B385002110F6 /* Preview Content */,
+				9C9C83C029E93640002110F6 /* PlayerImage.swift */,
 				9C9C83A629E8BB7A002110F6 /* Schedule.swift */,
 				9C9C83AF29E8FF17002110F6 /* ScheduleForDate.swift */,
-				9C9C83B629E91E21002110F6 /* MLBTeam.swift */,
-				9C2015CA2A3698ED00094E5D /* MLBManager.swift */,
+				9C9C83B429E91B1B002110F6 /* SettingsView.swift */,
+				9C9C83BA29E921B5002110F6 /* TeamDetailView.swift */,
+				9C9C83BC29E9259D002110F6 /* TeamRoster.swift */,
+				9C9C83BE29E92682002110F6 /* TeamRosterView.swift */,
+				9C9C837B29E8B385002110F6 /* Assets.xcassets */,
+				9C9C838229E8B385002110F6 /* BaseballPlayerUpdater.xcdatamodeld */,
 				9C9C83AC29E8FC26002110F6 /* JSON Structures */,
+				9C9C837D29E8B385002110F6 /* Preview Content */,
 			);
 			path = BaseballPlayerUpdater;
 			sourceTree = "<group>";
